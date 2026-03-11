@@ -35,7 +35,8 @@ This starts PostgreSQL on `localhost:5432` with:
 
 ### Setup & Migrations
 1. Navigate to the service directory:
-```cd python-service
+```
+cd python-service
 ```
 2. Create and activate a virtual environment:
 ```
