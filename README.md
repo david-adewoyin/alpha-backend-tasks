@@ -34,13 +34,31 @@ This starts PostgreSQL on `localhost:5432` with:
 ## Part A: Python Service (InsightOps)
 
 ### Setup & Migrations
-1. Navigate to the service directory: `cd python-service`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Set the environment variable:
-   ```bash
-   export DATABASE_URL=postgresql://assessment_user:assessment_pass@localhost:5432/assessment_db
+1. Navigate to the service directory:
+```cd python-service
+```
+2. Create and activate a virtual environment:
+```
+python3.12 -m venv .venv
+source .venv/bin/activate
+```
+3. Install dependencies:
+```
+pip install -r requirements.txt
+```
+4. Create the environment configuration:
+```
+cp .env.example .env
+```
+5. Run database migrations:
+```
+python -m app.db.run_migrations
+```
+Run the Service
+uvicorn app.main:app --reload --port 8000
+
    ```
-4. **Run Migrations**:
+5. **Run Migrations**:
    ```bash
    python -m app.db.run_migrations
    ```
