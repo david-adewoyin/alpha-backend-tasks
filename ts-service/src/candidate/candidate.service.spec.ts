@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
-import { SampleCandidate } from '../entities/sample-candidate.entity';
-import { SampleWorkspace } from '../entities/sample-workspace.entity';
-import { SampleService } from './sample.service';
+import { SampleCandidate } from '../entities/candidate.entity';
+import { SampleWorkspace } from '../entities/workspace.entity';
+import { SampleService } from './candidate.service';
 
 describe('SampleService', () => {
   let service: SampleService;

@@ -6,10 +6,10 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 
-import { SampleCandidate } from './sample-candidate.entity';
+import { Candidate } from './candidate.entity';
 
-@Entity({ name: 'sample_workspaces' })
-export class SampleWorkspace {
+@Entity({ name: 'workspaces' })
+export class Workspace {
   @PrimaryColumn({ type: 'varchar', length: 64 })
   id!: string;
 
@@ -19,6 +19,6 @@ export class SampleWorkspace {
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
   createdAt!: Date;
 
-  @OneToMany(() => SampleCandidate, (candidate) => candidate.workspace)
-  candidates!: SampleCandidate[];
+  @OneToMany(() => Candidate, (candidate) => candidate.workspace)
+  candidates!: Candidate[];
 }

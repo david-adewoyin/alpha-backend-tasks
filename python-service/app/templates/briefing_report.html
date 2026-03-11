@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: sans-serif; line-height: 1.5; color: #333; max-width: 800px; margin: 40px auto; padding: 20px; border: 1px solid #eee; }
+        .header { border-bottom: 3px solid #004a99; padding-bottom: 10px; margin-bottom: 20px; }
+        .metadata { display: flex; gap: 20px; background: #f4f4f4; padding: 10px; border-radius: 4px; }
+        h2 { color: #004a99; margin-top: 30px; border-bottom: 1px solid #ddd; }
+        .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+        .metric-card { background: #fff; border: 1px solid #ddd; padding: 10px; text-align: center; }
+        footer { margin-top: 50px; font-size: 0.8em; color: #777; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ title }}</h1>
+        <div class="metadata">
+            <div><strong>Ticker:</strong> {{ company.ticker }}</div>
+            <div><strong>Sector:</strong> {{ company.sector or "N/A" }}</div>
+            <div><strong>Analyst:</strong> {{ company.analyst }}</div>
+        </div>
+    </div>
+
+    <section>
+        <h2>Executive Summary</h2>
+        <p>{{ summary }}</p>
+    </section>
+
+    <section>
+        <h2>Key Strategic Points</h2>
+        <ul>{% for point in key_points %}<li>{{ point }}</li>{% endfor %}</ul>
+    </section>
+
+    <section>
+        <h2>Critical Risks</h2>
+        <ul>{% for risk in risks %}<li>{{ risk }}</li>{% endfor %}</ul>
+    </section>
+
+    <section>
+        <h2>Recommendation</h2>
+        <div style="background: #e7f3ff; padding: 15px; border-left: 5px solid #004a99;">
+            {{ recommendation }}
+        </div>
+    </section>
+
+    {% if metrics %}
+    <section>
+        <h2>Key Performance Metrics</h2>
+        <div class="metric-grid">
+            {% for metric in metrics %}
+            <div class="metric-card">
+                <small>{{ metric.name }}</small><br><strong>{{ metric.value }}</strong>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <footer>
+        Internal Use Only • Generated at {{generated_at.strftime('%Y-%m-%d %H:%M:%S') }}
+    </footer>
+</body>
+</html>

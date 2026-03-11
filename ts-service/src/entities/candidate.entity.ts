@@ -7,10 +7,10 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 
-import { SampleWorkspace } from './sample-workspace.entity';
+import { Workspace } from './workspace.entity';
 
-@Entity({ name: 'sample_candidates' })
-export class SampleCandidate {
+@Entity({ name: 'candidates' })
+export class Candidate {
   @PrimaryColumn({ type: 'varchar', length: 64 })
   id!: string;
 
@@ -26,9 +26,16 @@ export class SampleCandidate {
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
   createdAt!: Date;
 
-  @ManyToOne(() => SampleWorkspace, (workspace) => workspace.candidates, {
+  @ManyToOne(() => Workspace, (workspace) => workspace.candidates, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'workspace_id' })
-  workspace!: SampleWorkspace;
+  workspace!: Workspace;
+
+  /* @OneToMany(() => CandidateDocument, (doc) => doc.candidate)
+  documents: CandidateDocument[];
+
+  @OneToMany(() => CandidateSummary, (summary) => summary.candidate)
+  summaries: CandidateSummary[]; */
+  
 }

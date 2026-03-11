@@ -7,7 +7,7 @@ import { defaultDatabaseUrl, getTypeOrmOptions } from './config/typeorm.options'
 import { HealthModule } from './health/health.module';
 import { LlmModule } from './llm/llm.module';
 import { QueueModule } from './queue/queue.module';
-import { SampleModule } from './sample/sample.module';
+import { CandidateModule } from './candidate/candidate.module';
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { SampleModule } from './sample/sample.module';
     HealthModule,
     QueueModule,
     LlmModule,
-    SampleModule,
+    CandidateModule,
   ],
 })
 export class AppModule {}
