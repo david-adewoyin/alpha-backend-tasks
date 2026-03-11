@@ -42,7 +42,7 @@ This starts PostgreSQL on `localhost:5432` with:
    ```
 4. **Run Migrations**:
    ```bash
-   python app/db/run_migrations.py up
+   python -m app.db.run_migrations
    ```
 ### Running the Service
 ```bash
@@ -107,8 +107,6 @@ These simulate recruiter authentication and enforce **workspace-level access con
 - **In-Memory Job Tracking**: We utilized the starter's `QueueService` to log background jobs. While this is in-memory for the assessment, the architecture is prepared to swap in Bull/Redis for production.
 
 ### 2. Schema Decisions
-- **BigInt (Int64) Primary Keys**: For the Candidate service, I used `bigint` for the `id` columns. This is more performant for indexing and uses less storage than UUIDs for high-volume data like documents and summaries.
-- **Relational Normalization**:
   - **Python**: Key Points and Risks are stored in separate tables (`briefing_key_points` and `briefing_risks`). This allows for explicit `display_order` tracking and better data integrity.
   - **TypeScript**: Documents and Summaries are linked via Foreign Keys with `ON DELETE CASCADE` to ensure no "orphan" data remains if a candidate is deleted.
 
